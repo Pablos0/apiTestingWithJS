@@ -5,16 +5,16 @@ class BookingApi {
         return apiClient.get('/booking', { params: filters });
     }
     getBookingById(id) {
-        return apiClient.get('/booking/' + id);
+        return apiClient.get(`/booking/${id}`);
     }
     createBooking(newBook) {
         return apiClient.post('/booking', newBook);
     }
     updateBooking(id, update, head={}) {
-        return apiClient.put('/booking/' + id, update, { headers:{ ...head }});
+        return apiClient.put(`/booking/${id}`, update, { headers:{ ...head }});
     }
     deleteBooking(id, head={}) {
-        return apiClient.delete('/booking/' + id, { headers:{ ...head }});
+        return apiClient.delete(`/booking/${id}`, { headers:{ ...head }});
     }
 }
 

@@ -1,6 +1,7 @@
 import { expect } from "chai";
+import { timeout } from "../../tests/config/config.js";
 
-function assertResponse({response, duration, expectedStatus, maxDurationMs=5000 }) {
+function assertResponse({response, duration, expectedStatus, maxDurationMs=timeout }) {
     expect(duration).to.be.lessThan(maxDurationMs);
     expect(response.status).to.equal(expectedStatus);
     expect(response.headers['content-type']).to.match(/application\/json/);

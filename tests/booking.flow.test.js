@@ -4,15 +4,9 @@ import assertions from "../src/utils/assertions.js";
 import bookingSchemas from '../src/schemas/bookingSchemas.js';
 import { expect } from "chai";
 import { basicAuthorization } from "./config/config.js";
+import measure from "../src/utils/performance.js";
 
 const bookingApi = new BookingApi;
-
-const measure = async(miliSeconds) => {
-    const start = Date.now(); 
-    const result = await miliSeconds();
-    return { response:result, duration:Date.now() - start}
-};
-
 
 describe('Booking CRUD flow', () => {
     let id;
