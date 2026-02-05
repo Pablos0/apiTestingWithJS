@@ -2,11 +2,11 @@ pipeline {
 
     agent any 
 
-    stages {
-
-        triggers {
+    triggers {
             cron('H */2 * * *')
         }
+
+    stages {
 
         stage("Checkout") {
             steps {
@@ -15,14 +15,12 @@ pipeline {
         }
 
         stage("Installing") {
-            when { branch 'master' }
             steps {
                 sh 'npm install'
             }
         }
 
         stage('Lint') {
-            when { branch 'master' }
             when { expression { fileExists('eslint.config.ts') || fileExists('.eslintrc') } }
             steps {
                 sh 'npm run lint'
@@ -30,7 +28,6 @@ pipeline {
         }
 
         stage("Prettier") {
-            when { branch 'master' }
             when { expression { fileExists('.prettierrc') } }
             steps {
                 sh 'npm run format'
@@ -38,23 +35,21 @@ pipeline {
         }
 
         stage("Testing") {
-            when { branch 'master' }
             steps {
                 sh 'npm test'
             }
         }
 
         stage('Build') {
-            when { branch 'master' }
             steps {
                 sh 'npm run build'
             }
-        }
+        } 
+    }
 
-        post {
+    post {
             always {
                 junit testResults: 'reports/junit/**/*.xml', allowEmptyResults: true
             }
-        } 
-    }
+        }
 }
