@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
+    "@wdio/junit-reporter": "^9.23.3",
     "chai": "^6.2.1",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
