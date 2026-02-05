@@ -16,33 +16,33 @@ pipeline {
 
         stage("Installing") {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Lint') {
             when { expression { fileExists('eslint.config.ts') || fileExists('.eslintrc') } }
             steps {
-                sh 'npm run lint'
+                bat 'npm run lint'
             }
         }
 
         stage("Prettier") {
             when { expression { fileExists('.prettierrc') } }
             steps {
-                sh 'npm run format'
+                bat 'npm run format'
             }
         }
 
         stage("Testing") {
             steps {
-                sh 'npm test'
+                bat 'npm test'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'npm run build'
+                bat 'npm run build'
             }
         } 
     }
